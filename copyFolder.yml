@@ -1,0 +1,18 @@
+---
+- name: "Copy folder"
+  hosts: all
+
+  tasks: 
+
+    - name: "Ansible copy multiple files with_items"
+      copy:
+        src: ~/Documents/CRON_TEST/{{item}}
+        dest: ~/Documents/CRON_TEST/
+      with_items:
+        ['cronFile.txt','cronLogTest.log','fileSize.sh']
+
+    - name: "Cron Job spec"
+      ansible.builtin.cron:
+        name: "fileSize write to log"
+        minute: "0"
+        job: "cd ~/Documents/CRON_TEST && /bin/bash fileSize.sh >> ~/Documents/CRON_TEST/cronLogTest.log"

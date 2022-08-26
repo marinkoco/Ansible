@@ -1,0 +1,9 @@
+---
+- name: "sym link create using folder masking in path"
+  hosts: all
+
+  tasks: 
+
+    - name: "run a shell command to create sym link against the file in masked folder"
+      shell: ln -s /opt/TOTVS/ESB-DESA*/data/esb.log ~/Documents/esbLink.log 
+        
